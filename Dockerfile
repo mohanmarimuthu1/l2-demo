@@ -67,7 +67,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     HF_HUB_DISABLE_TELEMETRY=1 \
     TRANSFORMERS_OFFLINE=1 \
     HF_HUB_OFFLINE=1 \
-    PORT=5000
+    PORT=7860
 
 # Runtime-only system libs (no compilers needed at runtime).
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -93,7 +93,9 @@ COPY artifacts/ ./artifacts/
 RUN useradd --create-home --uid 1000 appuser && chown -R appuser:appuser /app /opt/hf-cache
 USER appuser
 
-EXPOSE 5000
+EXPOSE 7860
 
-# Hosts that supply $PORT (HF Spaces, Render, Fly) override at runtime.
-CMD ["sh", "-c", "gunicorn app:app --workers=2 --timeout=120 --bind 0.0.0.0:${PORT:-5000}"]
+# HF Spaces routes traffic to $app_port (7860 from the README front matter).
+# Other hosts override via $PORT at runtime; we default to 7860 so the Spaces
+# health check finds a listener even if PORT is not injected.
+CMD ["sh", "-c", "gunicorn app:app --workers=2 --timeout=120 --bind 0.0.0.0:${PORT:-7860}"]
