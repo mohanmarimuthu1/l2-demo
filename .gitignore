@@ -1,39 +1,52 @@
-# venv + caches
-.venv/
+# Python
 __pycache__/
 **/__pycache__/
 *.pyc
 *.pyo
 *.pyd
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
 
-# editor / OS
+# Env + venvs
+.venv/
+.env
+.env.*
+!.env.example
+
+# Editor / OS
 .idea/
 .vscode/
 .DS_Store
 Thumbs.db
 
-# raw input data — not needed for the deployed image; keep locally
-Data/
+# Test / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# training intermediates — not needed at runtime
+# Project-specific
+# raw input dataset — kept locally, not committed
+Data/
+# regenerable from the message log; gitignored to keep checkouts lean.
+# Note: the HF Space deploy still ships the index via Git LFS in its branch.
+artifacts/part3/index/
+# training intermediates — derived from conversations.csv, not needed at runtime
 artifacts/part2/dev_unlabeled.csv
 artifacts/part2/dev_gold_auto.csv
 artifacts/part2/labeled.csv
 artifacts/part3/candidates.json
 artifacts/part3/entity_mentions.csv
 
-# build / run logs
+# Runtime + build logs
+*.log
 artifacts/_*.log
 artifacts/_*.txt
 artifacts/part3/_*.txt
 artifacts/part3/_*.log
 
-# planning doc — internal, not for the Space
-FINAL_PLAN.md
+# HuggingFace model cache (only if someone runs scripts that write into the repo)
+.cache/
+hf-cache/
 
-# Claude harness
+# Internal planning doc + Claude harness
+FINAL_PLAN.md
 .claude/
 CLAUDE.md

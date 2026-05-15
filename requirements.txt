@@ -1,9 +1,19 @@
+# Direct imports across src/, app.py, run_all.py. Transitives (torch, transformers,
+# huggingface_hub, tokenizers, etc.) are resolved by pip from the pins below.
 pandas==3.0.3
 scikit-learn==1.8.0
 joblib==1.5.3
 numpy==2.4.4
 vaderSentiment==3.3.2
 spacy==3.8.13
-flask==3.1.3
-chromadb
-sentence-transformers
+Flask==3.1.3
+chromadb==1.5.9
+sentence-transformers==5.5.0
+
+# Web server for the hosted deploy. Not imported by the app; invoked via
+# gunicorn app:app in Dockerfile CMD and Procfile.
+gunicorn==23.0.0
+
+# spaCy model — installed separately via `python -m spacy download en_core_web_sm`
+# during venv setup. Pinned here for reference; not actually installable from PyPI.
+# en_core_web_sm==3.8.0

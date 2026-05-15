@@ -1,0 +1,33 @@
+.venv/
+.git/
+.claude/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# huge raw data — chunks.json + chroma index already capture what we need
+Data/
+artifacts/part2/dev_unlabeled.csv
+artifacts/part2/dev_gold_auto.csv
+artifacts/part2/labeled.csv
+artifacts/part3/_*.txt
+artifacts/_run_all.log
+
+# scratch / docs not needed at runtime
+FINAL_PLAN.md
+docs/
+scripts/diagnose_part3.py
+README.md
+DEPLOY.md
+*.md
+
+# editor / OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
