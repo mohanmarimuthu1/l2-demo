@@ -1,6 +1,6 @@
 ---
 title: L2 Demo
-emoji: ""
+emoji: 📊
 colorFrom: indigo
 colorTo: gray
 sdk: docker

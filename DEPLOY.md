@@ -82,7 +82,7 @@ The `README.md` at the repo root needs this YAML block at the very top — Space
 ```yaml
 ---
 title: L2 Demo
-emoji: ""
+emoji: 📊
 colorFrom: indigo
 colorTo: gray
 sdk: docker
@@ -94,7 +94,7 @@ pinned: false
 Two notes:
 
 - `app_port` must match the port the Spaces runtime will route traffic to. Spaces sets `$PORT=7860` and expects your app to bind there. Our `Dockerfile`'s `CMD` reads `$PORT`, so this works without code changes.
-- `emoji` is required by the front matter parser but can be empty. Don't put an emoji in the title.
+- `emoji` is **required and non-empty** — HF's pre-receive hook rejects pushes with an empty value. Pick any single emoji you can live with; it's shown on the Space card on `huggingface.co/<user>` and nowhere in the running app itself.
 
 ### 4. Verify the deploy
 
