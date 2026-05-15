@@ -1,13 +1,3 @@
----
-title: L2 Demo
-emoji: 📊
-colorFrom: indigo
-colorTo: gray
-sdk: docker
-app_port: 7860
-pinned: false
----
-
 # L2
 
 Three offline NLP pipelines wired into a single Flask app: a per-day persona drift detector over a chat corpus, a TF-IDF + LogisticRegression intent classifier with a 50 MB / 200 ms budget, and a retrieval system that surfaces contradictions across a user's message history without an LLM in the loop. Everything runs on CPU. No external calls at request time. The hosted demo and the local Docker image carry identical artifacts, so the first request is instant.
