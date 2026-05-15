@@ -1,0 +1,39 @@
+# venv + caches
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# raw input data — not needed for the deployed image; keep locally
+Data/
+
+# training intermediates — not needed at runtime
+artifacts/part2/dev_unlabeled.csv
+artifacts/part2/dev_gold_auto.csv
+artifacts/part2/labeled.csv
+artifacts/part3/candidates.json
+artifacts/part3/entity_mentions.csv
+
+# build / run logs
+artifacts/_*.log
+artifacts/_*.txt
+artifacts/part3/_*.txt
+artifacts/part3/_*.log
+
+# planning doc — internal, not for the Space
+FINAL_PLAN.md
+
+# Claude harness
+.claude/
+CLAUDE.md

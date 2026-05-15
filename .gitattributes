@@ -1,0 +1,7 @@
+# HuggingFace Spaces enforces a 10 MB cap on plain-git files. Anything large
+# tracked here goes through Git LFS instead.
+*.sqlite3 filter=lfs diff=lfs merge=lfs -text
+*.joblib  filter=lfs diff=lfs merge=lfs -text
+*.bin     filter=lfs diff=lfs merge=lfs -text
+*.pickle  filter=lfs diff=lfs merge=lfs -text
+artifacts/part3/chunks.json filter=lfs diff=lfs merge=lfs -text

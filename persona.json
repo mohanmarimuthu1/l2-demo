@@ -1,0 +1,36 @@
+{
+  "extracted_from_message_count": 1000,
+  "habits": [
+    "possible late sleeper",
+    "regular coffee/tea drinker",
+    "interested in food/cooking",
+    "physically active",
+    "enjoys reading"
+  ],
+  "personal_facts": [
+    "Engages in diverse conversations across multiple topics"
+  ],
+  "personality_traits": [
+    "balanced communicator",
+    "enthusiastic and positive"
+  ],
+  "communication_style": {
+    "tone": "friendly and casual",
+    "message_length": "medium",
+    "notable_patterns": [
+      "Asks questions in 26% of messages",
+      "Average 11.3 words per message",
+      "Emoji usage: low"
+    ]
+  },
+  "interests": [
+    "reading",
+    "music",
+    "food/cooking",
+    "travel",
+    "sports",
+    "pets",
+    "family",
+    "art"
+  ]
+}

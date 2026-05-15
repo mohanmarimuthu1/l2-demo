@@ -1,0 +1,1032 @@
+{
+  "info": {
+    "strategy": "row",
+    "reason": "no temporal or grouping column present, falling back to row order",
+    "n_bins": 7,
+    "chronology": "synthetic_row_order"
+  },
+  "timeline": [
+    {
+      "day": 0,
+      "mood": "playful",
+      "tone": "casual",
+      "avg_compound": 0.5238,
+      "features": {
+        "question_rate": 0.02061,
+        "exclamation_rate": 0.0503,
+        "caps_ratio": 0.00057,
+        "avg_word_len": 3.9084,
+        "contraction_rate": 0.06565
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4733,
+          "count": 5324,
+          "distinct_convos": 1440
+        },
+        {
+          "term": "like",
+          "score": 0.3987,
+          "count": 4485,
+          "distinct_convos": 1337
+        },
+        {
+          "term": "great",
+          "score": 0.2959,
+          "count": 3329,
+          "distinct_convos": 1341
+        },
+        {
+          "term": "fun",
+          "score": 0.1972,
+          "count": 2218,
+          "distinct_convos": 1116
+        },
+        {
+          "term": "sounds",
+          "score": 0.1706,
+          "count": 1919,
+          "distinct_convos": 1105
+        },
+        {
+          "term": "really",
+          "score": 0.164,
+          "count": 1845,
+          "distinct_convos": 928
+        },
+        {
+          "term": "thanks",
+          "score": 0.1631,
+          "count": 1835,
+          "distinct_convos": 1052
+        },
+        {
+          "term": "favorite",
+          "score": 0.1617,
+          "count": 1819,
+          "distinct_convos": 916
+        },
+        {
+          "term": "good",
+          "score": 0.1605,
+          "count": 1806,
+          "distinct_convos": 998
+        },
+        {
+          "term": "lot",
+          "score": 0.1461,
+          "count": 1643,
+          "distinct_convos": 955
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 56,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 43,
+          "distinct_convos": 38
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 39,
+          "distinct_convos": 32
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 38,
+          "distinct_convos": 19
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 29,
+          "distinct_convos": 21
+        },
+        {
+          "text": "Harry Potter",
+          "label": "PERSON",
+          "count": 28,
+          "distinct_convos": 11
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 26,
+          "distinct_convos": 18
+        },
+        {
+          "text": "Bailey",
+          "label": "PERSON",
+          "count": 24,
+          "distinct_convos": 14
+        },
+        {
+          "text": "Beatles",
+          "label": "PERSON",
+          "count": 23,
+          "distinct_convos": 18
+        },
+        {
+          "text": "Led Zeppelin",
+          "label": "PERSON",
+          "count": 23,
+          "distinct_convos": 17
+        }
+      ],
+      "drift_from_prev": false,
+      "drift_score": 0.0,
+      "drift_detail": {
+        "sentiment_delta": 0.0,
+        "topic_jaccard": 1.0,
+        "mood_changed": false,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 1,
+      "mood": "happy",
+      "tone": "casual",
+      "avg_compound": 0.5198,
+      "features": {
+        "question_rate": 0.02034,
+        "exclamation_rate": 0.04849,
+        "caps_ratio": 0.00056,
+        "avg_word_len": 3.9011,
+        "contraction_rate": 0.06537
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4745,
+          "count": 5241,
+          "distinct_convos": 1432
+        },
+        {
+          "term": "like",
+          "score": 0.408,
+          "count": 4507,
+          "distinct_convos": 1336
+        },
+        {
+          "term": "great",
+          "score": 0.2764,
+          "count": 3053,
+          "distinct_convos": 1305
+        },
+        {
+          "term": "fun",
+          "score": 0.1913,
+          "count": 2113,
+          "distinct_convos": 1106
+        },
+        {
+          "term": "really",
+          "score": 0.1769,
+          "count": 1954,
+          "distinct_convos": 1006
+        },
+        {
+          "term": "sounds",
+          "score": 0.1655,
+          "count": 1828,
+          "distinct_convos": 1063
+        },
+        {
+          "term": "good",
+          "score": 0.164,
+          "count": 1812,
+          "distinct_convos": 997
+        },
+        {
+          "term": "thanks",
+          "score": 0.1617,
+          "count": 1786,
+          "distinct_convos": 1018
+        },
+        {
+          "term": "favorite",
+          "score": 0.1574,
+          "count": 1739,
+          "distinct_convos": 908
+        },
+        {
+          "term": "lot",
+          "score": 0.1435,
+          "count": 1585,
+          "distinct_convos": 948
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 38,
+          "distinct_convos": 32
+        },
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 36,
+          "distinct_convos": 15
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 36,
+          "distinct_convos": 18
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 33,
+          "distinct_convos": 29
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 28,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Italy",
+          "label": "GPE",
+          "count": 27,
+          "distinct_convos": 14
+        },
+        {
+          "text": "YouTube",
+          "label": "ORG",
+          "count": 27,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Harry Potter",
+          "label": "PERSON",
+          "count": 26,
+          "distinct_convos": 17
+        },
+        {
+          "text": "Sarah",
+          "label": "PERSON",
+          "count": 23,
+          "distinct_convos": 13
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 23,
+          "distinct_convos": 16
+        }
+      ],
+      "drift_from_prev": true,
+      "drift_score": 0.1036,
+      "drift_detail": {
+        "sentiment_delta": 0.004,
+        "topic_jaccard": 1.0,
+        "mood_changed": true,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 2,
+      "mood": "happy",
+      "tone": "casual",
+      "avg_compound": 0.5225,
+      "features": {
+        "question_rate": 0.02005,
+        "exclamation_rate": 0.04852,
+        "caps_ratio": 0.00059,
+        "avg_word_len": 3.9055,
+        "contraction_rate": 0.06343
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4782,
+          "count": 5210,
+          "distinct_convos": 1423
+        },
+        {
+          "term": "like",
+          "score": 0.4026,
+          "count": 4386,
+          "distinct_convos": 1339
+        },
+        {
+          "term": "great",
+          "score": 0.2862,
+          "count": 3118,
+          "distinct_convos": 1329
+        },
+        {
+          "term": "fun",
+          "score": 0.1957,
+          "count": 2132,
+          "distinct_convos": 1096
+        },
+        {
+          "term": "really",
+          "score": 0.1739,
+          "count": 1895,
+          "distinct_convos": 985
+        },
+        {
+          "term": "sounds",
+          "score": 0.1725,
+          "count": 1879,
+          "distinct_convos": 1118
+        },
+        {
+          "term": "favorite",
+          "score": 0.1606,
+          "count": 1750,
+          "distinct_convos": 896
+        },
+        {
+          "term": "good",
+          "score": 0.1565,
+          "count": 1705,
+          "distinct_convos": 990
+        },
+        {
+          "term": "thanks",
+          "score": 0.1561,
+          "count": 1701,
+          "distinct_convos": 1013
+        },
+        {
+          "term": "lot",
+          "score": 0.1388,
+          "count": 1512,
+          "distinct_convos": 899
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 61,
+          "distinct_convos": 26
+        },
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 36,
+          "distinct_convos": 31
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 33,
+          "distinct_convos": 31
+        },
+        {
+          "text": "Disney",
+          "label": "ORG",
+          "count": 32,
+          "distinct_convos": 10
+        },
+        {
+          "text": "Thrones",
+          "label": "ORG",
+          "count": 28,
+          "distinct_convos": 17
+        },
+        {
+          "text": "Bailey",
+          "label": "GPE",
+          "count": 27,
+          "distinct_convos": 18
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 26,
+          "distinct_convos": 15
+        },
+        {
+          "text": "Sarah",
+          "label": "PERSON",
+          "count": 24,
+          "distinct_convos": 15
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 22,
+          "distinct_convos": 19
+        },
+        {
+          "text": "YouTube",
+          "label": "ORG",
+          "count": 21,
+          "distinct_convos": 16
+        }
+      ],
+      "drift_from_prev": false,
+      "drift_score": 0.0024,
+      "drift_detail": {
+        "sentiment_delta": 0.0027,
+        "topic_jaccard": 1.0,
+        "mood_changed": false,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 3,
+      "mood": "happy",
+      "tone": "casual",
+      "avg_compound": 0.5251,
+      "features": {
+        "question_rate": 0.0206,
+        "exclamation_rate": 0.04966,
+        "caps_ratio": 0.00065,
+        "avg_word_len": 3.907,
+        "contraction_rate": 0.06452
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4784,
+          "count": 5293,
+          "distinct_convos": 1425
+        },
+        {
+          "term": "like",
+          "score": 0.4,
+          "count": 4426,
+          "distinct_convos": 1347
+        },
+        {
+          "term": "great",
+          "score": 0.2787,
+          "count": 3084,
+          "distinct_convos": 1303
+        },
+        {
+          "term": "fun",
+          "score": 0.1894,
+          "count": 2096,
+          "distinct_convos": 1078
+        },
+        {
+          "term": "sounds",
+          "score": 0.1721,
+          "count": 1904,
+          "distinct_convos": 1090
+        },
+        {
+          "term": "really",
+          "score": 0.1668,
+          "count": 1846,
+          "distinct_convos": 973
+        },
+        {
+          "term": "favorite",
+          "score": 0.1657,
+          "count": 1834,
+          "distinct_convos": 929
+        },
+        {
+          "term": "good",
+          "score": 0.1634,
+          "count": 1808,
+          "distinct_convos": 983
+        },
+        {
+          "term": "thanks",
+          "score": 0.1569,
+          "count": 1736,
+          "distinct_convos": 1035
+        },
+        {
+          "term": "lot",
+          "score": 0.1476,
+          "count": 1633,
+          "distinct_convos": 938
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 41,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 39,
+          "distinct_convos": 34
+        },
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 38,
+          "distinct_convos": 20
+        },
+        {
+          "text": "Beatles",
+          "label": "PERSON",
+          "count": 37,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 30,
+          "distinct_convos": 28
+        },
+        {
+          "text": "Italy",
+          "label": "GPE",
+          "count": 29,
+          "distinct_convos": 15
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 27,
+          "distinct_convos": 22
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 27,
+          "distinct_convos": 14
+        },
+        {
+          "text": "Canada",
+          "label": "GPE",
+          "count": 26,
+          "distinct_convos": 13
+        },
+        {
+          "text": "Paris",
+          "label": "GPE",
+          "count": 22,
+          "distinct_convos": 13
+        }
+      ],
+      "drift_from_prev": false,
+      "drift_score": 0.0023,
+      "drift_detail": {
+        "sentiment_delta": 0.0026,
+        "topic_jaccard": 1.0,
+        "mood_changed": false,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 4,
+      "mood": "happy",
+      "tone": "casual",
+      "avg_compound": 0.5257,
+      "features": {
+        "question_rate": 0.02022,
+        "exclamation_rate": 0.04936,
+        "caps_ratio": 0.00065,
+        "avg_word_len": 3.917,
+        "contraction_rate": 0.06488
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4861,
+          "count": 5359,
+          "distinct_convos": 1425
+        },
+        {
+          "term": "like",
+          "score": 0.4009,
+          "count": 4420,
+          "distinct_convos": 1345
+        },
+        {
+          "term": "great",
+          "score": 0.2838,
+          "count": 3129,
+          "distinct_convos": 1328
+        },
+        {
+          "term": "fun",
+          "score": 0.1864,
+          "count": 2055,
+          "distinct_convos": 1075
+        },
+        {
+          "term": "sounds",
+          "score": 0.1713,
+          "count": 1889,
+          "distinct_convos": 1108
+        },
+        {
+          "term": "really",
+          "score": 0.167,
+          "count": 1841,
+          "distinct_convos": 941
+        },
+        {
+          "term": "favorite",
+          "score": 0.163,
+          "count": 1797,
+          "distinct_convos": 913
+        },
+        {
+          "term": "good",
+          "score": 0.1623,
+          "count": 1789,
+          "distinct_convos": 1014
+        },
+        {
+          "term": "thanks",
+          "score": 0.1542,
+          "count": 1700,
+          "distinct_convos": 995
+        },
+        {
+          "term": "lot",
+          "score": 0.1421,
+          "count": 1567,
+          "distinct_convos": 925
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 65,
+          "distinct_convos": 29
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 36,
+          "distinct_convos": 30
+        },
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 35,
+          "distinct_convos": 28
+        },
+        {
+          "text": "Italy",
+          "label": "GPE",
+          "count": 34,
+          "distinct_convos": 18
+        },
+        {
+          "text": "Harry Potter",
+          "label": "PERSON",
+          "count": 30,
+          "distinct_convos": 19
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 30,
+          "distinct_convos": 26
+        },
+        {
+          "text": "Australia",
+          "label": "GPE",
+          "count": 28,
+          "distinct_convos": 16
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 28,
+          "distinct_convos": 22
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 26,
+          "distinct_convos": 15
+        },
+        {
+          "text": "Charlie",
+          "label": "PERSON",
+          "count": 25,
+          "distinct_convos": 21
+        }
+      ],
+      "drift_from_prev": false,
+      "drift_score": 0.0005,
+      "drift_detail": {
+        "sentiment_delta": 0.0006,
+        "topic_jaccard": 1.0,
+        "mood_changed": false,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 5,
+      "mood": "playful",
+      "tone": "casual",
+      "avg_compound": 0.5161,
+      "features": {
+        "question_rate": 0.02065,
+        "exclamation_rate": 0.05069,
+        "caps_ratio": 0.00065,
+        "avg_word_len": 3.9112,
+        "contraction_rate": 0.06489
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4663,
+          "count": 5137,
+          "distinct_convos": 1426
+        },
+        {
+          "term": "like",
+          "score": 0.4173,
+          "count": 4597,
+          "distinct_convos": 1357
+        },
+        {
+          "term": "great",
+          "score": 0.2767,
+          "count": 3048,
+          "distinct_convos": 1297
+        },
+        {
+          "term": "fun",
+          "score": 0.1898,
+          "count": 2091,
+          "distinct_convos": 1073
+        },
+        {
+          "term": "sounds",
+          "score": 0.1764,
+          "count": 1943,
+          "distinct_convos": 1114
+        },
+        {
+          "term": "really",
+          "score": 0.1743,
+          "count": 1920,
+          "distinct_convos": 980
+        },
+        {
+          "term": "good",
+          "score": 0.1628,
+          "count": 1794,
+          "distinct_convos": 1018
+        },
+        {
+          "term": "thanks",
+          "score": 0.162,
+          "count": 1785,
+          "distinct_convos": 1036
+        },
+        {
+          "term": "favorite",
+          "score": 0.1574,
+          "count": 1734,
+          "distinct_convos": 879
+        },
+        {
+          "term": "lot",
+          "score": 0.1401,
+          "count": 1543,
+          "distinct_convos": 927
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 56,
+          "distinct_convos": 27
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 42,
+          "distinct_convos": 37
+        },
+        {
+          "text": "Sarah",
+          "label": "PERSON",
+          "count": 39,
+          "distinct_convos": 21
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 37,
+          "distinct_convos": 24
+        },
+        {
+          "text": "Beatles",
+          "label": "PERSON",
+          "count": 35,
+          "distinct_convos": 27
+        },
+        {
+          "text": "Bailey",
+          "label": "PERSON",
+          "count": 33,
+          "distinct_convos": 21
+        },
+        {
+          "text": "Buddy",
+          "label": "PERSON",
+          "count": 28,
+          "distinct_convos": 24
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 26,
+          "distinct_convos": 14
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 24,
+          "distinct_convos": 19
+        },
+        {
+          "text": "Led Zeppelin",
+          "label": "PERSON",
+          "count": 24,
+          "distinct_convos": 20
+        }
+      ],
+      "drift_from_prev": true,
+      "drift_score": 0.1086,
+      "drift_detail": {
+        "sentiment_delta": 0.0096,
+        "topic_jaccard": 1.0,
+        "mood_changed": true,
+        "tone_changed": false
+      },
+      "trigger": null
+    },
+    {
+      "day": 6,
+      "mood": "playful",
+      "tone": "casual",
+      "avg_compound": 0.515,
+      "features": {
+        "question_rate": 0.0206,
+        "exclamation_rate": 0.05075,
+        "caps_ratio": 0.00055,
+        "avg_word_len": 3.9146,
+        "contraction_rate": 0.06569
+      },
+      "top_topics": [
+        {
+          "term": "love",
+          "score": 0.4676,
+          "count": 5140,
+          "distinct_convos": 1408
+        },
+        {
+          "term": "like",
+          "score": 0.3997,
+          "count": 4394,
+          "distinct_convos": 1315
+        },
+        {
+          "term": "great",
+          "score": 0.2879,
+          "count": 3165,
+          "distinct_convos": 1319
+        },
+        {
+          "term": "fun",
+          "score": 0.1929,
+          "count": 2121,
+          "distinct_convos": 1101
+        },
+        {
+          "term": "really",
+          "score": 0.1742,
+          "count": 1915,
+          "distinct_convos": 985
+        },
+        {
+          "term": "sounds",
+          "score": 0.1691,
+          "count": 1859,
+          "distinct_convos": 1081
+        },
+        {
+          "term": "thanks",
+          "score": 0.1649,
+          "count": 1813,
+          "distinct_convos": 1021
+        },
+        {
+          "term": "good",
+          "score": 0.164,
+          "count": 1803,
+          "distinct_convos": 998
+        },
+        {
+          "term": "favorite",
+          "score": 0.1624,
+          "count": 1785,
+          "distinct_convos": 914
+        },
+        {
+          "term": "lot",
+          "score": 0.1412,
+          "count": 1552,
+          "distinct_convos": 913
+        }
+      ],
+      "top_entities": [
+        {
+          "text": "Japan",
+          "label": "GPE",
+          "count": 54,
+          "distinct_convos": 25
+        },
+        {
+          "text": "Buddy",
+          "label": "ORG",
+          "count": 44,
+          "distinct_convos": 40
+        },
+        {
+          "text": "Rings",
+          "label": "ORG",
+          "count": 36,
+          "distinct_convos": 27
+        },
+        {
+          "text": "Harry Potter",
+          "label": "PERSON",
+          "count": 31,
+          "distinct_convos": 20
+        },
+        {
+          "text": "Mittens",
+          "label": "PERSON",
+          "count": 31,
+          "distinct_convos": 28
+        },
+        {
+          "text": "Bailey",
+          "label": "GPE",
+          "count": 25,
+          "distinct_convos": 20
+        },
+        {
+          "text": "California",
+          "label": "GPE",
+          "count": 23,
+          "distinct_convos": 14
+        },
+        {
+          "text": "Beatles",
+          "label": "PERSON",
+          "count": 23,
+          "distinct_convos": 20
+        },
+        {
+          "text": "Comic Con",
+          "label": "PERSON",
+          "count": 23,
+          "distinct_convos": 11
+        },
+        {
+          "text": "Stephen King",
+          "label": "PERSON",
+          "count": 22,
+          "distinct_convos": 13
+        }
+      ],
+      "drift_from_prev": false,
+      "drift_score": 0.001,
+      "drift_detail": {
+        "sentiment_delta": 0.0011,
+        "topic_jaccard": 1.0,
+        "mood_changed": false,
+        "tone_changed": false
+      },
+      "trigger": null
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "dev_source": "auto",
+  "n_train": 191853,
+  "n_dev": 150,
+  "vocab_size": 10000,
+  "macro_f1_dev": 0.425,
+  "per_class": {
+    "reminder": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support_in_dev": 0
+    },
+    "emotional-support": {
+      "precision": 0.4667,
+      "recall": 1.0,
+      "f1": 0.6364,
+      "support_in_dev": 14
+    },
+    "action-item": {
+      "precision": 0.0968,
+      "recall": 1.0,
+      "f1": 0.1765,
+      "support_in_dev": 3
+    },
+    "small-talk": {
+      "precision": 1.0,
+      "recall": 0.725,
+      "f1": 0.8406,
+      "support_in_dev": 40
+    },
+    "unknown": {
+      "precision": 0.9667,
+      "recall": 0.3118,
+      "f1": 0.4715,
+      "support_in_dev": 93
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "reminder",
+      "emotional-support",
+      "action-item",
+      "small-talk",
+      "unknown"
+    ],
+    "rows_are_true": true,
+    "values": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        5,
+        2,
+        29,
+        1
+      ],
+      [
+        27,
+        11,
+        26,
+        0,
+        29
+      ]
+    ]
+  },
+  "model_size_bytes": 789417
+}

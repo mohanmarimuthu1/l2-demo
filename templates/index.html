@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L2 Demo — Drift / Classify / RAG</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161a22;
+      --panel-2: #1c2230;
+      --border: #2a3142;
+      --fg: #e6e8ee;
+      --muted: #8a92a6;
+      --accent: #6aa9ff;
+      --accent-2: #a0e0c0;
+      --warn: #ffb86b;
+      --bad: #ff7a7a;
+      --good: #79d29a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    code, pre { font-family: "JetBrains Mono", "Fira Mono", Consolas, monospace; }
+    pre { background: var(--panel); border: 1px solid var(--border); padding: 10px 12px;
+      border-radius: 6px; overflow-x: auto; }
+    header { padding: 16px 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 16px; }
+    header h1 { font-size: 16px; font-weight: 600; margin: 0; }
+    header .sub { color: var(--muted); font-size: 12px; }
+    main { padding: 16px 24px 64px; max-width: 1100px; margin: 0 auto; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border);
+      margin-bottom: 18px; }
+    .tab { background: transparent; color: var(--muted); border: none;
+      padding: 10px 14px; font: inherit; cursor: pointer; border-bottom: 2px solid transparent; }
+    .tab:hover { color: var(--fg); }
+    .tab.active { color: var(--fg); border-bottom-color: var(--accent); }
+    section.panel { display: none; }
+    section.panel.active { display: block; }
+
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 16px; flex: 1 1 320px; }
+    .card h2 { font-size: 13px; font-weight: 600; color: var(--muted);
+      margin: 0 0 10px 0; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border);
+      vertical-align: top; }
+    th { color: var(--muted); font-weight: 500; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.04em; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    td.pos { color: var(--good); }
+    td.neg { color: var(--bad); }
+    td.muted { color: var(--muted); }
+
+    .chart-wrap { background: var(--panel); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; }
+    svg.chart { width: 100%; height: 260px; display: block; }
+
+    textarea, input[type=text] {
+      width: 100%; background: var(--panel-2); color: var(--fg);
+      border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px;
+      font: inherit; resize: vertical;
+    }
+    textarea { min-height: 84px; }
+    button.primary {
+      background: var(--accent); color: #0a0f1a; border: none;
+      padding: 9px 16px; border-radius: 6px; font: inherit; font-weight: 600;
+      cursor: pointer;
+    }
+    button.primary:disabled { opacity: 0.5; cursor: progress; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 10px;
+      background: var(--panel-2); border: 1px solid var(--border);
+      color: var(--accent-2); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .pill.warn { color: var(--warn); }
+    .pill.bad { color: var(--bad); }
+    .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; }
+    .kv .k { color: var(--muted); }
+    .result { margin-top: 14px; }
+    .result.empty { color: var(--muted); font-style: italic; }
+    details { background: var(--panel-2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px 10px; margin-top: 8px; }
+    details summary { cursor: pointer; color: var(--muted); }
+    .examples { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .examples button {
+      background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 14px; font: inherit; cursor: pointer;
+    }
+    .examples button:hover { color: var(--fg); border-color: var(--accent); }
+    .footer-note { color: var(--muted); font-size: 12px; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>L2 Demo</h1>
+    <span class="sub">Persona drift &middot; intent classifier &middot; conflict-resolving RAG</span>
+  </header>
+
+  <main>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="drift">Drift</button>
+      <button class="tab" data-tab="classify">Classify</button>
+      <button class="tab" data-tab="rag">RAG</button>
+    </div>
+
+    <!-- ====================== DRIFT ====================== -->
+    <section id="tab-drift" class="panel active">
+      <div class="chart-wrap">
+        <h2 style="margin:0 0 8px 0; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;">
+          Sentiment by day-bucket
+        </h2>
+        <svg id="sentChart" class="chart" aria-label="sentiment line chart"></svg>
+        <div id="sentChartMeta" class="footer-note"></div>
+      </div>
+
+      <div class="card">
+        <h2>Drift Timeline</h2>
+        <table id="driftTable">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Mood</th>
+              <th>Tone</th>
+              <th class="num">Avg sent</th>
+              <th class="num">Drift</th>
+              <th>Top topics</th>
+              <th>Top entities</th>
+              <th>Trigger</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="footer-note" id="driftInfo"></div>
+      </div>
+    </section>
+
+    <!-- ====================== CLASSIFY ====================== -->
+    <section id="tab-classify" class="panel">
+      <div class="card">
+        <h2>Intent Classifier</h2>
+        <p style="margin-top:0;color:var(--muted);font-size:13px;">
+          TF-IDF + LogisticRegression. Five classes: reminder, emotional-support,
+          action-item, small-talk, unknown.
+        </p>
+        <textarea id="classifyText" placeholder="Type a message — e.g. 'remind me to call mom tomorrow'"></textarea>
+        <div class="examples">
+          <button data-ex="remind me to call mom tomorrow">remind me to call mom</button>
+          <button data-ex="I've been feeling really down today">feeling down</button>
+          <button data-ex="hey how are you doing today?">small talk</button>
+          <button data-ex="book the flight for next Friday morning">action item</button>
+        </div>
+        <div style="margin-top:10px;">
+          <button id="classifyBtn" class="primary">Classify</button>
+        </div>
+        <div id="classifyResult" class="result empty">no result yet.</div>
+      </div>
+    </section>
+
+    <!-- ====================== RAG ====================== -->
+    <section id="tab-rag" class="panel">
+      <div class="card">
+        <h2>Conflict-Resolving RAG</h2>
+        <p style="margin-top:0;color:var(--muted);font-size:13px;">
+          Top-15 retrieval with composite re-rank (cosine + recency + emotion).
+          Pairwise NLI on top-5; contradictions flagged above 0.6.
+        </p>
+        <input id="ragQuery" type="text" value="Did I mention anything about my sister?" />
+        <div class="examples">
+          <button data-ex="Did I mention anything about my sister?">spec literal</button>
+          <button data-ex="What did I say about my sister recently?">recency-cued</button>
+          <button data-ex="Tell me about my relationship with my sister over time">temporal</button>
+        </div>
+        <div style="margin-top:10px;">
+          <button id="ragBtn" class="primary">Run query</button>
+        </div>
+        <div id="ragResult" class="result empty">no result yet.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ---- tabs -----------------------------------------------------------
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".panel");
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.toggle("active", x === t));
+      panels.forEach(p => p.classList.toggle("active",
+        p.id === "tab-" + t.dataset.tab));
+    }));
+
+    // ---- helpers --------------------------------------------------------
+    function el(tag, attrs={}, ...children) {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === "class") node.className = v;
+        else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
+        else node.setAttribute(k, v);
+      }
+      for (const c of children) {
+        if (c == null) continue;
+        node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+      }
+      return node;
+    }
+
+    // ---- drift: table + svg chart --------------------------------------
+    async function loadDrift() {
+      const r = await fetch("/drift");
+      const data = await r.json();
+      const tbody = document.querySelector("#driftTable tbody");
+      tbody.innerHTML = "";
+      for (const d of data.timeline) {
+        const trigger = d.trigger ? String(d.trigger) : "";
+        const sentClass = d.avg_compound > 0 ? "pos" : (d.avg_compound < 0 ? "neg" : "muted");
+        const driftStr = d.drift_score == null ? "" : Number(d.drift_score).toFixed(3);
+        tbody.appendChild(el("tr", {},
+          el("td", { class: "num" }, String(d.day)),
+          el("td", {}, d.mood ?? ""),
+          el("td", {}, d.tone ?? ""),
+          el("td", { class: "num " + sentClass }, (d.avg_compound ?? 0).toFixed(3)),
+          el("td", { class: "num" }, driftStr),
+          el("td", { class: "muted" }, (d.top_topics || []).join(", ")),
+          el("td", { class: "muted" }, (d.top_entities || []).join(", ")),
+          el("td", { class: trigger ? "" : "muted" }, trigger || "—"),
+        ));
+      }
+      const info = data.info || {};
+      document.getElementById("driftInfo").textContent =
+        `chronology: ${info.chronology || "?"} · strategy: ${info.strategy || "?"} · n_bins: ${info.n_bins ?? "?"}`;
+      drawSentChart(data.timeline);
+    }
+
+    function drawSentChart(timeline) {
+      const svg = document.getElementById("sentChart");
+      svg.innerHTML = "";
+      const W = svg.clientWidth || 600, H = 260;
+      const padL = 42, padR = 14, padT = 14, padB = 28;
+      const xs = timeline.map(d => d.day);
+      const ys = timeline.map(d => d.avg_compound ?? 0);
+      if (!xs.length) return;
+      const xMin = Math.min(...xs), xMax = Math.max(...xs);
+      const yMin = Math.min(0, ...ys), yMax = Math.max(0, ...ys);
+      const yPad = (yMax - yMin) * 0.1 || 0.05;
+      const y0 = yMin - yPad, y1 = yMax + yPad;
+      const sx = x => padL + (x - xMin) / Math.max(1, xMax - xMin) * (W - padL - padR);
+      const sy = y => padT + (1 - (y - y0) / Math.max(1e-9, y1 - y0)) * (H - padT - padB);
+
+      const NS = "http://www.w3.org/2000/svg";
+      function add(tag, attrs) {
+        const e = document.createElementNS(NS, tag);
+        for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+        return svg.appendChild(e);
+      }
+
+      // gridlines
+      const yTicks = 4;
+      for (let i = 0; i <= yTicks; i++) {
+        const y = y0 + (y1 - y0) * i / yTicks;
+        const yp = sy(y);
+        add("line", { x1: padL, y1: yp, x2: W - padR, y2: yp,
+                      stroke: "#2a3142", "stroke-width": 1 });
+        add("text", { x: padL - 6, y: yp + 4, "text-anchor": "end",
+                      fill: "#8a92a6", "font-size": 10 }).textContent = y.toFixed(2);
+      }
+
+      // zero baseline
+      if (y0 < 0 && y1 > 0) {
+        add("line", { x1: padL, y1: sy(0), x2: W - padR, y2: sy(0),
+                      stroke: "#3a4358", "stroke-width": 1, "stroke-dasharray": "3,3" });
+      }
+
+      // x labels
+      for (const x of xs) {
+        add("text", { x: sx(x), y: H - 8, "text-anchor": "middle",
+                      fill: "#8a92a6", "font-size": 10 }).textContent = "d" + x;
+      }
+
+      // line
+      const path = xs.map((x, i) => (i ? "L" : "M") + sx(x) + "," + sy(ys[i])).join(" ");
+      add("path", { d: path, fill: "none", stroke: "#6aa9ff", "stroke-width": 2 });
+      // dots
+      xs.forEach((x, i) => add("circle", { cx: sx(x), cy: sy(ys[i]), r: 3,
+                                            fill: "#6aa9ff" }));
+
+      document.getElementById("sentChartMeta").textContent =
+        `range: ${Math.min(...ys).toFixed(3)} … ${Math.max(...ys).toFixed(3)}`;
+    }
+
+    // ---- classify -------------------------------------------------------
+    document.querySelectorAll("#tab-classify .examples button").forEach(b => {
+      b.addEventListener("click", () => {
+        document.getElementById("classifyText").value = b.dataset.ex;
+      });
+    });
+    document.getElementById("classifyBtn").addEventListener("click", async () => {
+      const text = document.getElementById("classifyText").value.trim();
+      const out = document.getElementById("classifyResult");
+      const btn = document.getElementById("classifyBtn");
+      if (!text) { out.className = "result empty"; out.textContent = "type something first."; return; }
+      btn.disabled = true;
+      out.className = "result"; out.textContent = "running…";
+      try {
+        const r = await fetch("/classify", {
+          method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+        const data = await r.json();
+        out.innerHTML = "";
+        out.appendChild(el("div", { class: "kv" },
+          el("span", { class: "k" }, "label"),     el("span", {}, data.label),
+          el("span", { class: "k" }, "confidence"), el("span", {}, (data.confidence * 100).toFixed(1) + "%"),
+          el("span", { class: "k" }, "latency"),    el("span", {}, data.latency_ms.toFixed(2) + " ms"),
+        ));
+      } catch (e) {
+        out.textContent = "request failed: " + e;
+      } finally { btn.disabled = false; }
+    });
+
+    // ---- rag ------------------------------------------------------------
+    document.querySelectorAll("#tab-rag .examples button").forEach(b => {
+      b.addEventListener("click", () => {
+        document.getElementById("ragQuery").value = b.dataset.ex;
+      });
+    });
+    document.getElementById("ragBtn").addEventListener("click", async () => {
+      const q = document.getElementById("ragQuery").value.trim();
+      const out = document.getElementById("ragResult");
+      const btn = document.getElementById("ragBtn");
+      if (!q) { out.className = "result empty"; out.textContent = "enter a query."; return; }
+      btn.disabled = true;
+      out.className = "result"; out.textContent = "retrieving + running NLI… (first call loads the model, can take ~10s)";
+      try {
+        const r = await fetch("/rag", {
+          method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ query: q }),
+        });
+        const data = await r.json();
+        out.innerHTML = "";
+        out.appendChild(el("div", { class: "kv" },
+          el("span", { class: "k" }, "entity"),     el("span", {}, data.entity || "—"),
+          el("span", { class: "k" }, "confidence"), el("span", {}, data.confidence?.toFixed?.(3) ?? "—"),
+          el("span", { class: "k" }, "contradictions"),
+            el("span", {}, el("span", {
+              class: "pill " + ((data.contradictions || []).length ? "warn" : "")
+            }, String((data.contradictions || []).length))),
+        ));
+        out.appendChild(el("h3", { style: "margin:12px 0 4px 0;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;" }, "Answer"));
+        out.appendChild(el("pre", {}, data.answer || ""));
+
+        if ((data.contradictions || []).length) {
+          const det = el("details", {});
+          det.appendChild(el("summary", {}, "contradictions (" + data.contradictions.length + ")"));
+          const tb = el("table", {});
+          const thead = el("thead", {}, el("tr", {},
+            el("th", {}, "a"), el("th", {}, "b"),
+            el("th", { class: "num" }, "a day"), el("th", { class: "num" }, "b day"),
+            el("th", { class: "num" }, "a sent"), el("th", { class: "num" }, "b sent"),
+            el("th", { class: "num" }, "contradict")));
+          tb.appendChild(thead);
+          const body = el("tbody", {});
+          for (const c of data.contradictions) {
+            body.appendChild(el("tr", {},
+              el("td", {}, c.a_id), el("td", {}, c.b_id),
+              el("td", { class: "num" }, String(c.a_day)),
+              el("td", { class: "num" }, String(c.b_day)),
+              el("td", { class: "num" }, c.a_sentiment.toFixed(2)),
+              el("td", { class: "num" }, c.b_sentiment.toFixed(2)),
+              el("td", { class: "num" }, c.contradiction_prob.toFixed(3))));
+          }
+          tb.appendChild(body);
+          det.appendChild(tb);
+          out.appendChild(det);
+        }
+
+        const detSrc = el("details", {});
+        detSrc.appendChild(el("summary", {}, "source chunks (" + (data.source_chunks || []).length + ")"));
+        const t = el("table", {});
+        const thead = el("thead", {}, el("tr", {},
+          el("th", {}, "id"), el("th", { class: "num" }, "day"),
+          el("th", { class: "num" }, "sent"), el("th", { class: "num" }, "cos"),
+          el("th", { class: "num" }, "score"), el("th", {}, "syn"),
+          el("th", {}, "excerpt")));
+        t.appendChild(thead);
+        const tbody2 = el("tbody", {});
+        for (const c of (data.source_chunks || [])) {
+          const txt = (c.text || "").replace(/\n/g, "  /  ");
+          const sn = txt.length > 120 ? txt.slice(0, 119) + "…" : txt;
+          tbody2.appendChild(el("tr", {},
+            el("td", {}, c.id), el("td", { class: "num" }, String(c.day_bucket)),
+            el("td", { class: "num" }, c.sentiment.toFixed(2)),
+            el("td", { class: "num" }, c.cosine_sim.toFixed(3)),
+            el("td", { class: "num" }, c.score.toFixed(3)),
+            el("td", {}, c.synthetic ? "Y" : ""),
+            el("td", { class: "muted" }, sn)));
+        }
+        t.appendChild(tbody2);
+        detSrc.appendChild(t);
+        out.appendChild(detSrc);
+      } catch (e) {
+        out.textContent = "request failed: " + e;
+      } finally { btn.disabled = false; }
+    });
+
+    // initial load
+    loadDrift();
+  </script>
+</body>
+</html>
