@@ -8,7 +8,7 @@ Three offline NLP pipelines wired into a single Flask app: a per-day persona dri
 
 ## Loom walkthrough
 
-[INSERT_AFTER_RECORDING]
+https://www.loom.com/share/15b9105781024c7fbe0f18eea52c9858
 
 ## Quickstart
 
